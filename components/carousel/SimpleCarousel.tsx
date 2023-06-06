@@ -1,5 +1,7 @@
 "use client";
 
+{/** le composant actuel prends en props un tableau de Static Image Data pour utiliser des images provenant d'une api il faudra l'ajuster ;)  */}
+
 import Image, { StaticImageData } from "next/image";
 import React, { useEffect, useState } from "react";
 
