@@ -10,10 +10,15 @@ interface ImageArray {
 type Props = { imageArray: ImageArray[] };
 
 function SimpleCarousel({ imageArray }: Props) {
+
+  {/** state faisant fonctionner la logique du composant */}
+
   const [numberOfClick, setNumberOfClick] = useState<number>(0);
   const [windowSize, setWindowSize] = useState<number>(0 | window.innerWidth);
   const [slicedImageArray, setSlicedImageArray] = useState(imageArray);
   const [toggle, setToggle] = useState(false);
+
+  {/** fonction pour gérer le carousel selon un compteur qui reviens à son état initial apres avoir passé la taille maximale du tableau */}
 
   const goToNextSlide = (array: any[], numberOfClick: number) => {
     if (numberOfClick < array.length - 1) {
@@ -29,6 +34,8 @@ function SimpleCarousel({ imageArray }: Props) {
       setNumberOfClick(numberOfClick - 1);
     }
   };
+
+  {/** useEffect qui gère la taille de l'écran et qui permet de mettre à jour le tableau coupé pour l'affichage en mode desktop */}
 
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -46,10 +53,7 @@ function SimpleCarousel({ imageArray }: Props) {
       }
       setSlicedImageArray(imageArray.slice(0, 3));
     }
-    let imageToScroll = document.getElementById(
-      `carousel-img-${numberOfClick}`
-    );
-    imageToScroll?.scrollIntoView({ behavior: "smooth" });
+
     return window.removeEventListener("resize", () => {
       setWindowSize(window.innerWidth);
     });
@@ -57,6 +61,7 @@ function SimpleCarousel({ imageArray }: Props) {
 
   return (
     <>
+    {/** version desktop */}
       <section className=" grid-cols-3 grid-rows-2 h-96 gap-4 p-4 lg:grid-cols-4 hidden md:grid">
         {slicedImageArray.map((item, i) => (
           <div
@@ -89,7 +94,7 @@ function SimpleCarousel({ imageArray }: Props) {
           </div>
         ))}
         {toggle && (
-          <div className="absolute min-h-screen w-full top-0 left-0 bg-black/80 z-20 grid grid-cols-2 gap-4 p-20">
+          <div className="fixed overflow-auto h-screen w-full top-0 left-0 bg-black/80 z-20 grid grid-cols-2 gap-4 p-20">
             <button
               onClick={() => {
                 setToggle(false);
@@ -112,7 +117,7 @@ function SimpleCarousel({ imageArray }: Props) {
               </svg>
             </button>
             {imageArray.map((item, i) => (
-              <div key={i} className="overflow-hidden rounded-lg">
+              <div key={i} className="overflow-hidden rounded-lg min-h-[380px]">
                 <Image
                   src={item.src}
                   alt={`carousel-image-${i}`}
@@ -125,6 +130,8 @@ function SimpleCarousel({ imageArray }: Props) {
           </div>
         )}
       </section>
+
+      {/** version mobile  */}
       <section className="h-64 flex items-center relative overflow-hidden md:hidden">
         <div className="absolute top-0 left-0 h-full w-full flex items-center justify-between ">
           <button
@@ -170,7 +177,7 @@ function SimpleCarousel({ imageArray }: Props) {
             </svg>
           </button>
         </div>
-        <div className=" flex h-full overflow-x-hidden z-10 relative ">
+        <div className={`flex h-full  z-10 relative duration-150 -translate-x-[${(numberOfClick) * 100}vw]`} >
           {imageArray.map((item, i) => (
             <Image
               src={item.src}

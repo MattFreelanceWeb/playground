@@ -12,7 +12,7 @@ function SimpleNav({ navLinkArray, src, title }: Props) {
   }
 
   return (
-    <header className="w-full flex flex-col items-center justify-center gap-4 shadow-2xl md:flex-row pt-2 pb-4 px-4 text-lg md:text-xl font-bold">
+    <header className="w-full flex flex-col items-center justify-center gap-4 shadow-xl md:flex-row pt-2 pb-4 px-4 text-lg md:text-xl font-bold">
       {/** logo  redirect to home*/}
       <Link href="/" className="w-full flex flex-col items-center justify-center uppercase md:flex-row-reverse md:justify-end md:gap-4 ">
         <span>{title}</span> 
