@@ -17,8 +17,8 @@ type Props = { children: ReactNode };
 function layout({ children }: Props) {
   return (
     <>
-    <MobileNav/>
-    <main className={`min-h-screen flex flex-col items-center justify-center ${raleway.className}`} >
+    <main className={`min-h-screen flex flex-col items-center w-full overflow-x-hidden bg-black p-4 ${raleway.className}`} >
+      <MobileNav/>
       {children}
     </main>
     </>

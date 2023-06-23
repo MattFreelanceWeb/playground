@@ -6,7 +6,8 @@ import Image from "next/image";
 import Logo from "@/assets/images/promomusic/Logo.png";
 import ToggleMenu from "./ToggleMenu";
 import NavList from "./NavList";
-import GradientButton from "../button/gradientButton";
+import GradientButton from "../button/GradientButton";
+
 
 type Props = {};
 
@@ -32,10 +33,11 @@ function MobileNav({}: Props) {
   
 
   return (
-    <nav className="flex flex-col justify-between items-center px-10 py-8 bg-black text-white uppercase overflow-x-hidden lg:flex-row">
-      <div className="w-full flex justify-between items-center lg:w-auto">
-        <Link href="/" className=" flex items-center justify-center ">
+    <nav className="w-full  flex flex-col justify-between items-center px-10 py-8 bg-black text-white uppercase overflow-x-hidden lg:flex-row">
+      <div className="w-full flex justify-between items-center lg:w-auto ">
+        <Link href="/" className=" flex items-center justify-center capitalize gap-2">
           <Image src={Logo} alt={"Logo-promomusic"} />
+          <span className="hidden lg:flex">Promomusic</span>
         </Link>
         <ToggleMenu toggle={toggle} setToggle={setToggle} />
       </div>
@@ -46,7 +48,7 @@ function MobileNav({}: Props) {
         }`}
       >
         <NavList />
-        <GradientButton content={"créer ma campagne"} />
+        <GradientButton content={"créer ma campagne"} preventDefault={false}/>
       </div>
     </nav>
   );
