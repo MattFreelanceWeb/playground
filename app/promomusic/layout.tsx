@@ -26,10 +26,3 @@ function layout({ children }: Props) {
 }
 
 export default layout;
-
-
-// #833AB4, #FD1D1D, #FCB045 linear CanvasGradient
-
-// #727272 grey
-
-// #13131399 black

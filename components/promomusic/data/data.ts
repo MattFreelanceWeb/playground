@@ -10,6 +10,10 @@ import Projet from '@/assets/svg/Projet.svg'
 import Radio from '@/assets/svg/Radio.svg'
 import RéseauxSociaux from '@/assets/svg/Réseaux-scoiaux.svg'
 import WhoAreYou from '@/assets/svg/whoAreYou.svg'
+import Instagram from'@/assets/socialsIcons/Instagram.svg'
+import Spotify from'@/assets/socialsIcons/Spotify.svg'
+import Tiktok from'@/assets/socialsIcons/Tiktok.svg'
+import Youtube from'@/assets/socialsIcons/Youtube.svg'
 
 import { StaticImageData } from 'next/image'
 
@@ -33,14 +37,35 @@ export const breadcrumbContent:breadcrumbObject[] = [
     {name:'analytics' , href:'#'},
 ]
 
-export interface whoAreyouObject {name:string,  value:string, svg:StaticImageData | string}
+export interface whoAreyouObject {name:string,  id:string, svg:StaticImageData | string}
 
 export const whoAreYouContent:whoAreyouObject[] = [
-    {name:'artiste', value:'artiste', svg:WhoAreYou},
-    {name:'manager, CM', value:'manager',svg:CM},
-    {name:'clippeur', value:'clippeur',svg:Clipeur},
-    {name:'influenceur', value:'influenceur',svg:Influenceur},
-    {name:'beatmaker', value:'beartmaker', svg:BeatMaker},
-    {name:'label', value:'label',svg:Label},
-    {name:'radio TV, média, curateur', value:'radio',svg:Musique},
+    {name:'artiste', id:'artiste', svg:WhoAreYou},
+    {name:'manager, CM', id:'manager',svg:CM},
+    {name:'clippeur', id:'clippeur',svg:Clipeur},
+    {name:'influenceur', id:'influenceur',svg:Influenceur},
+    {name:'beatmaker', id:'beartmaker', svg:BeatMaker},
+    {name:'label', id:'label',svg:Label},
+    {name:'radio TV, média, curateur', id:'radio',svg:Musique},
+]
+
+export interface yourContentObject {name:string, id:string, svg:StaticImageData | string}
+
+export const yourContent:yourContentObject[] = [
+    {name:'Clip',id:'Clip',svg:Clip},
+    {name:'Artiste',id:'Artiste',svg:WhoAreYou},
+    {name:'Clipeur',id:'Clipeur',svg:Clipeur},
+    {name:'Influenceur',id:'Influenceur',svg:Influenceur},
+    {name:'Beatmaker',id:'Beatmaker',svg:BeatMaker},
+    
+]
+
+
+export interface platformContentObject { name:string,id:string, svg:StaticImageData | string }
+
+export const platformContent:platformContentObject[] = [
+    {name:'youtube', id:'youtube', svg:Youtube},
+    {name:'spotify', id:'spotify', svg:Spotify},
+    {name:'tiktok', id:'tiktok', svg:Tiktok},
+    {name:'instagram', id:'isntagram', svg:Instagram}
 ]
