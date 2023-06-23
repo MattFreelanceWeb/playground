@@ -32,9 +32,9 @@ function page({}: Props) {
     Salon10,
     Salon11,
   ];
+
   return (
     <main className={`${poppins.className} `}>
-     
       <div className="flex flex-col-reverse md:flex-col">
         <SimpleInfo
           name={"as coiffure"}
@@ -42,12 +42,13 @@ function page({}: Props) {
           score={5.0}
           reviewNumber={53}
           devise="€"
-          href='https://www.google.com/maps/place/AS+COIFFURE/@45.3981211,5.4171679,17z/data=!4m15!1m8!3m7!1s0x478adea83f45be2b:0x2e11d6fd4b401619!2s11+Rue+de+la+R%C3%A9publique,+38690+Le+Grand-Lemps!3b1!8m2!3d45.3981211!4d5.4171679!16s%2Fg%2F11bw41q5q4!3m5!1s0x478adea83f4fffff:0xc674f913e3333a40!8m2!3d45.3981211!4d5.4171679!16s%2Fg%2F11f5d_qq42?entry=ttu'
+          href="https://www.google.com/maps/place/AS+COIFFURE/@45.3981211,5.4171679,17z/data=!4m15!1m8!3m7!1s0x478adea83f45be2b:0x2e11d6fd4b401619!2s11+Rue+de+la+R%C3%A9publique,+38690+Le+Grand-Lemps!3b1!8m2!3d45.3981211!4d5.4171679!16s%2Fg%2F11bw41q5q4!3m5!1s0x478adea83f4fffff:0xc674f913e3333a40!8m2!3d45.3981211!4d5.4171679!16s%2Fg%2F11f5d_qq42?entry=ttu"
         />
         <SimpleCarousel imageArray={imageArray} />
       </div>
-      <div className='bg-red-500 h-screen w-full'>
-
+      <div className="p-4">
+        <h2 className="text-xl font-bold">Réserver en ligne pour un RDV chez AS Coiffure</h2>
+        <p className="font-thin text-gray-500">24/24 - Paiement sur place - Confirmation immédiate</p>
       </div>
     </main>
   );

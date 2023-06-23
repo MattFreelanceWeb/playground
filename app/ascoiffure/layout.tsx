@@ -6,7 +6,7 @@ type Props = { children: ReactNode };
 
 function layout({ children }: Props) {
   return (
-    <>
+    <div className="container mx-auto">
       <SimpleNav
         navLinkArray={[
           { name: "prendre RDV", href: "" },
@@ -17,7 +17,7 @@ function layout({ children }: Props) {
         title="AS Coiffure"
       />
       {children}
-    </>
+    </div>
   );
 }
 

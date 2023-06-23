@@ -16,8 +16,8 @@ function SimpleCarousel({ imageArray }: Props) {
   {/** state faisant fonctionner la logique du composant */}
 
   const [numberOfClick, setNumberOfClick] = useState<number>(0);
-  const [windowSize, setWindowSize] = useState<number>(0 | window.innerWidth);
-  const [slicedImageArray, setSlicedImageArray] = useState(imageArray);
+  const [windowSize, setWindowSize] = useState<number>(0);
+  const [slicedImageArray, setSlicedImageArray] = useState<ImageArray[]>(imageArray);
   const [toggle, setToggle] = useState(false);
 
   {/** fonction pour gérer le carousel selon un compteur qui reviens à son état initial apres avoir passé la taille maximale du tableau */}
@@ -37,28 +37,23 @@ function SimpleCarousel({ imageArray }: Props) {
     }
   };
 
+
   {/** useEffect qui gère la taille de l'écran et qui permet de mettre à jour le tableau coupé pour l'affichage en mode desktop */}
 
   useEffect(() => {
+
+    setWindowSize(window.innerWidth)
+
     window.addEventListener("resize", () => {
       setWindowSize(window.innerWidth);
     });
 
-    if (windowSize >= 1024) {
-      {
-        /** if md: */
-      }
-      setSlicedImageArray(imageArray.slice(0, 5));
-    } else if (windowSize >= 768) {
-      {
-        /** if lg: */
-      }
-      setSlicedImageArray(imageArray.slice(0, 3));
-    }
+    windowSize >= 1024? setSlicedImageArray(imageArray.slice(0,5)) : setSlicedImageArray(imageArray.slice(0,3))
 
     return window.removeEventListener("resize", () => {
       setWindowSize(window.innerWidth);
     });
+
   }, [numberOfClick, windowSize, imageArray]);
 
   return (
@@ -179,7 +174,7 @@ function SimpleCarousel({ imageArray }: Props) {
             </svg>
           </button>
         </div>
-        <div className={`flex h-full  z-10 relative duration-150 -translate-x-[${(numberOfClick) * 100}vw]`} >
+        <div className={`flex h-full  z-10 relative duration-150 `} style={{transform:`translate(-${(numberOfClick) * 100}vw,0)`}} >
           {imageArray.map((item, i) => (
             <Image
               src={item.src}
