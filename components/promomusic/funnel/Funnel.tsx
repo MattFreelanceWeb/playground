@@ -11,6 +11,7 @@ import { platformContent } from "../data/data";
 import PlatformFunnel from "./PlatformFunnel";
 import ContentFunnel from "./ContentFunnel";
 import { yourContent } from "../data/data";
+import PromoteFunnel from "./PromoteFunnel";
 
 type Props = {};
 
@@ -19,7 +20,7 @@ function Funnel({}: Props) {
   const [objectFunnel, setObjectFunnel] = useState({
     customer: whoAreYouContent[0].name,
     platform: platformContent[0].name,
-    content: yourContent[0].name
+    content: yourContent[0].name,
   });
 
   const nextStep = (BreadcrumbContent: breadcrumbObject[]) => {
@@ -51,6 +52,13 @@ function Funnel({}: Props) {
       )}
       {actualIndex === 2 && (
         <PlatformFunnel
+          objectFunnel={objectFunnel}
+          setObjectFunnel={setObjectFunnel}
+          actualIndex={actualIndex}
+        />
+      )}
+      {actualIndex === 3 && (
+        <PromoteFunnel
           objectFunnel={objectFunnel}
           setObjectFunnel={setObjectFunnel}
           actualIndex={actualIndex}

@@ -67,5 +67,5 @@ export const platformContent:platformContentObject[] = [
     {name:'youtube', id:'youtube', svg:Youtube},
     {name:'spotify', id:'spotify', svg:Spotify},
     {name:'tiktok', id:'tiktok', svg:Tiktok},
-    {name:'instagram', id:'isntagram', svg:Instagram}
+    {name:'instagram', id:'instagram', svg:Instagram}
 ]

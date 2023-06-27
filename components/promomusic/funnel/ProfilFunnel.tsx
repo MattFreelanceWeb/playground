@@ -30,7 +30,7 @@ const findIByname =(array:{id:string}[],name:string)=>{
       </div>
       <div className="grid grid-cols-3 gap-4 self-center">
         {whoAreYouContent.map((item, i) => (
-          <div key={i} className={`${item.name === whoAreYouContent[selected].name? 'bg-gradient-to-r from-[#FCB045] from-2% via-[#FD1D1D] via-20% to-[#833AB4] to-99%':''} p-0.5 rounded-md hover:scale-105 duration-100`}>
+          <div key={i} className={`${item.name === whoAreYouContent[selected]?.name? 'bg-gradient-to-r from-[#FCB045] from-2% via-[#FD1D1D] via-20% to-[#833AB4] to-99%':''} p-0.5 rounded-md hover:scale-105 duration-100`}>
             <div
               id={item.id}
               onClick={()=>{setSelected(i),setObjectFunnel({...objectFunnel, customer:item.id})}}

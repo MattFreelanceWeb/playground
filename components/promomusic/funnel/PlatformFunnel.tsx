@@ -60,6 +60,12 @@ function PlatformFunnel({ objectFunnel, setObjectFunnel, actualIndex }: Props) {
           </div>
         ))}
       </div>
+
+    {/** self closed div  */}
+      <div className="h-1 w-full border-b-2 border-gray-500"/>
+
+      <h3>Votre clip vidéo sera promu grâce à une publicité vidéo et une recommandation sur {objectFunnel.platform} avec google Ads.</h3>
+      <p className="text-xs text-gray-300 text-justify">Votre clip sera promu grâce à une publicité vidéo et une recommandation sur {objectFunnel.platform} avec google Ads. Cette puissante campagne de promotion va placer votre clip sur plusieurs playlist très influentes. Notre équipe de community manager, avec son exprtise à analysé, repertorié les meilleures techniques, va promouvoir vos contenus de manière avancée pour atteindre un public large et augmenter les vues. Faites découvrir votre talent à un nouveau public grâce à cette campagne de mise en avant d&apos;artiste pour vos projjets musicaux.</p>
     </section>
   );
 }
