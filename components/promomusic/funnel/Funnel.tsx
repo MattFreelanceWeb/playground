@@ -21,6 +21,7 @@ function Funnel({}: Props) {
     customer: whoAreYouContent[0].name,
     platform: platformContent[0].name,
     content: yourContent[0].name,
+    url:''
   });
 
   const nextStep = (BreadcrumbContent: breadcrumbObject[]) => {

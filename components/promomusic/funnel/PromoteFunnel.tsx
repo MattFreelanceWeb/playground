@@ -1,22 +1,24 @@
 import PromoteInput from "@/components/input/PromoteInput";
 import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import React, { SVGProps, useEffect, useRef, useState } from "react";
 
 type Props = {
   objectFunnel: any;
   setObjectFunnel: Function;
   actualIndex: number;
 };
-
+interface DataObject {
+    title:string,
+    description:string,
+    url:string,
+    image:string | SVGProps<SVGImageElement>
+}
 function PromoteFunnel({ objectFunnel, setObjectFunnel, actualIndex }: Props) {
   const inputRef: any = useRef();
 
   const [urlPreview, setUrlPreview] = useState();
-  const [dataFetched, setDataFetched] = useState({
-    image: "",
-    title: "",
-    description: "",
-  });
+  const [dataFetched, setDataFetched] = useState<DataObject | undefined>(undefined);
   const [isloading, setIsloading] = useState(false);
 
   const fetchPreview = async (url: string) => {
@@ -24,10 +26,11 @@ function PromoteFunnel({ objectFunnel, setObjectFunnel, actualIndex }: Props) {
       const data = await fetch(url);
       const object = await data.json();
 
-
       if (data.status === 200) {
         setDataFetched(object);
         setIsloading(false);
+        setObjectFunnel({...objectFunnel, url:object.url})
+        console.log(objectFunnel)
       } else {
         setIsloading(true);
         setTimeout(() => {
@@ -37,25 +40,28 @@ function PromoteFunnel({ objectFunnel, setObjectFunnel, actualIndex }: Props) {
     }
   };
 
+  
+
+
   return (
     <section
       className={`min-h-[400px] text-white flex flex-col items-start justify-start gap-4 mt-4 duration-300 ${
         actualIndex === 3 ? "translate-x-0 " : "-translate-x-full "
       }`}
     >
-      <div className="flex flex-col justify-center">
+      <div className="flex flex-col justify-center w-full">
         <h2 className="">Lien à promouvoir</h2>
         <p className="text-sm font-thin text-gray-300">
           Ajouter le lien à promouvoir:
         </p>
       </div>
-      <div className="">
+      <div className="w-full flex flex-col items-start justify-center gap-4">
         <h3>
           Recherchez et sélectionnez votre{" "}
           {objectFunnel.platform === "spotify" ? "musique" : "vidéo"}{" "}
           {objectFunnel.platform}
         </h3>
-        <div className="flex ">
+        <div className="flex w-full">
           <input
             ref={inputRef}
             type="url"
@@ -110,19 +116,18 @@ function PromoteFunnel({ objectFunnel, setObjectFunnel, actualIndex }: Props) {
           </button>
         </div>
         {dataFetched && (
-          <div className="flex items-center justify-between gap-4 min-h-[200px] border-2">
-            <Image
-              src={dataFetched.image}
+          <div className="flex items-center justify-between gap-4 min-h-[200px] border-2 p-1 rounded-md">
+            <img
+              src={`${dataFetched.image}`}
               alt={`image from ${objectFunnel.platform}`}
-              className="flex-1 flex items-center justify-center"
-              width={40}
-              height={40}
+              className=" flex items-center justify-center w-28 h-40 object-cover"
+
             />
-            <div className="flex-1 flex items-center justify-center">
-              <h3>{dataFetched.title}</h3>
-              <p>{dataFetched.description}</p>
+            <div className="flex-1 flex flex-col max-h-40 overflow-hidden gap-2 text-justify ">
+              <Link href={dataFetched.url} target="_blank" className="text-blue-400 hover:text-blue-500">{dataFetched.title}</Link>
+              <p className="text-xs text-gray-300">{dataFetched.description}</p>
             </div>
-            <button className="flex-1 flex items-center justify-center">
+            <button onClick={()=>{setDataFetched(undefined)}} className="p-1 flex items-center justify-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
